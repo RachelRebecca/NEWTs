@@ -102,7 +102,7 @@ public class NEWTsPracticeTest extends JFrame
         spellAndEffect.setLayout(new FlowLayout());
 
         effect = new JLabel();
-        effect.setPreferredSize(new Dimension(200, 40));
+        effect.setPreferredSize(new Dimension(400, 40));
         Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
         effect.setBorder(border);
         effect.setText("Please write the incantation here: ");
@@ -121,7 +121,9 @@ public class NEWTsPracticeTest extends JFrame
         submitAndResults.setLayout(new FlowLayout());
 
         results = new JLabel();
-        results.setText("Your Results Go Here");
+        Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
+        results.setBorder(border);
+        results.setText("Your Results Go Here: ");
         submitAndResults.add(results);
 
         submitAnswer = new JButton("Submit Your Answer");
