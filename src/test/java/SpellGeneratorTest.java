@@ -16,8 +16,8 @@ class SpellGeneratorTest
 
         System.out.println("name: " + spellList.get(0).getName() +
                 "\neffect: " +  spellList.get(0).getEffect() +
-                " incantation: " + spellList.get(0).getIncantation() +
+                "\nincantation: " + spellList.get(0).getIncantation() +
                 "\nis it verbal: " + spellList.get(0).getVerbal() +
-                " light: " + spellList.get(0).getLight());
+                "\nlight: " + spellList.get(0).getLight());
     }
 }
