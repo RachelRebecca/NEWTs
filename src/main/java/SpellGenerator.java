@@ -1,5 +1,6 @@
 import io.reactivex.Observable;
 import json.Spell;
+import json.SpellList;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -22,9 +23,9 @@ public class SpellGenerator
 
     }
 
-    public Observable<Spell> getSpell(String spellType)
+    public Observable<SpellList> getSpell(String spellType)
     {
-        Observable<Spell> observable = service.getSpell(spellType);
+        Observable<SpellList> observable = service.getSpell(spellType);
         return observable;
     }
 }

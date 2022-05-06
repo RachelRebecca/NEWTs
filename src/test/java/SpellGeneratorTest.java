@@ -1,4 +1,5 @@
 import json.Spell;
+import json.SpellList;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -10,11 +11,13 @@ class SpellGeneratorTest
     {
         SpellGenerator spellGenerator = new SpellGenerator();
 
-        Spell spell = spellGenerator.getSpell("Conjuration")
+        SpellList spellList = spellGenerator.getSpell("Conjuration")
                 .blockingFirst();
 
-        System.out.println("name: " + spell.getName() +
-                "\neffect: " +  spell.getEffect() + " incantation: " + spell.getIncantation() +
-                "\nis it verbal: " + spell.getVerbal() + " light: " + spell.getLight());
+        System.out.println("name: " + spellList.get(0).getName() +
+                "\neffect: " +  spellList.get(0).getEffect() +
+                " incantation: " + spellList.get(0).getIncantation() +
+                "\nis it verbal: " + spellList.get(0).getVerbal() +
+                " light: " + spellList.get(0).getLight());
     }
 }
