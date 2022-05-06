@@ -2,37 +2,40 @@ package json;
 
 public class Spell
 {
-    Main main; // This is causing an issue,
-    // 1) I don't know what to name it
-    // 2) It's expecting an object but is given an array
+    String name;
+    String incantation;
+    String effect;
+    boolean canBeVerbal;
+    String type;
+    String light;
 
     public String getName()
     {
-        return main.name;
+        return name;
     }
 
     public String getIncantation()
     {
-        return main.incantation;
+        return incantation;
     }
 
     public String getEffect()
     {
-        return main.effect;
+        return effect;
     }
 
     public boolean getVerbal()
     {
-        return main.canBeVerbal;
+        return canBeVerbal;
     }
 
     public String getType()
     {
-        return main.type;
+        return type;
     }
 
     public String getLight()
     {
-        return main.light;
+        return light;
     }
 }
