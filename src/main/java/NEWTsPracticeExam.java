@@ -14,7 +14,6 @@ public class NEWTsPracticeExam extends JFrame
             "DarkArts", "CounterJinx", "CounterCharm", "Untransfiguration",
             "BindingMagicalContract", "Vanishment"};
     private JComboBox<String> category;
-    private JButton categorySubmitButton;
     private JLabel categorySelected;
 
     private JPanel flashCards;
@@ -71,11 +70,8 @@ public class NEWTsPracticeExam extends JFrame
         chooseCategory.setLayout(new FlowLayout());
 
         category = new JComboBox<>(availableCategories);
+        category.addActionListener(this::onSelectCategory);
         chooseCategory.add(category);
-
-        categorySubmitButton = new JButton("Select Spell Category");
-        categorySubmitButton.addActionListener(this::onSubmitCategory);
-        chooseCategory.add(categorySubmitButton);
 
         categorySelected = new JLabel();
         chooseCategory.add(categorySelected);
@@ -155,7 +151,7 @@ public class NEWTsPracticeExam extends JFrame
         categorySelected.setText(categorySelectedText);
     }
 
-    private void onSubmitCategory(ActionEvent actionEvent)
+    private void onSelectCategory(ActionEvent actionEvent)
     {
         String selectedCategory = Objects.requireNonNull(category.getSelectedItem()).toString();
         presenter.resetFlashCard(selectedCategory);
@@ -165,6 +161,11 @@ public class NEWTsPracticeExam extends JFrame
     public void setEffect(String spellEffect)
     {
         effect.setText(spellEffect);
+    }
+
+    public void resetIncantation()
+    {
+        incantation.setText("");
     }
 
     private void onSubmitClicked(ActionEvent actionEvent)

@@ -32,6 +32,7 @@ public class NEWTsPresenter
         if (category.equals("--"))
         {
             view.setEffect("Effect Goes Here");
+            view.resetIncantation();
             view.setResult("");
         }
     }
@@ -68,7 +69,7 @@ public class NEWTsPresenter
         name = spell.getName();
         incantation = spell.getIncantation();
         category = spell.getType();
-        view.setEffect(effect);
+        view.setEffect("<html>" + effect + "</html>");
     }
 
     private int getRandomSpellIndex(SpellList spells)
