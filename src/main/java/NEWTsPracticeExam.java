@@ -40,7 +40,7 @@ public class NEWTsPracticeExam extends JFrame
      */
     private void setForm()
     {
-        setTitle("Nemesure's Exhausting Wizarding Tests");
+        setTitle("Nemesure's Exhausting Wizarding Tests Practice Examination");
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout());
