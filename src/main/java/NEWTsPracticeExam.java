@@ -1,23 +1,23 @@
-import json.SpellList;
-
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.Objects;
 
-public class NEWTsPracticeTest extends JFrame
+public class NEWTsPracticeExam extends JFrame
 {
     private JPanel verticalPanel;
 
     private final String[] availableCategories =
-            {"None", "Charm", "Conjuration", "Spell", "Transfiguration", "HealingSpell",
+            {"--", "Charm", "Conjuration", "Spell", "Transfiguration", "HealingSpell",
             "DarkCharm", "Jinx", "Curse", "MagicalTransportation", "Hex", "CounterSpell",
             "DarkArts", "CounterJinx", "CounterCharm", "Untransfiguration",
             "BindingMagicalContract", "Vanishment"};
     private JComboBox<String> category;
     private JButton categorySubmitButton;
+    private JLabel categorySelected;
 
+    private JPanel flashCards;
     private JLabel instructions;
     private JLabel effect;
     private JTextField incantation;
@@ -27,7 +27,7 @@ public class NEWTsPracticeTest extends JFrame
 
     private NEWTsPresenter presenter;
 
-    public NEWTsPracticeTest()
+    public NEWTsPracticeExam()
     {
         setForm();
 
@@ -60,9 +60,7 @@ public class NEWTsPracticeTest extends JFrame
 
         addChooseCategoryPanel();
 
-        addInstructionsPanel();
-
-        addSpellAndEffectPanel();
+        addFlashCardPanel();
 
         addSubmitAndResultsPanel();
     }
@@ -79,7 +77,24 @@ public class NEWTsPracticeTest extends JFrame
         categorySubmitButton.addActionListener(this::onSubmitCategory);
         chooseCategory.add(categorySubmitButton);
 
+        categorySelected = new JLabel();
+        chooseCategory.add(categorySelected);
+
         verticalPanel.add(chooseCategory);
+    }
+
+    private void addFlashCardPanel()
+    {
+        flashCards = new JPanel();
+        flashCards.setLayout(new BoxLayout(flashCards, BoxLayout.Y_AXIS));
+
+        addInstructionsPanel();
+
+        addSpellAndEffectPanel();
+
+        Border border = BorderFactory.createLineBorder(Color.BLACK, 5);
+        flashCards.setBorder(border);
+        verticalPanel.add(flashCards);
     }
 
     private void addInstructionsPanel()
@@ -93,7 +108,7 @@ public class NEWTsPracticeTest extends JFrame
         instructions.setText(instructionsText);
         instructionsPanel.add(instructions);
 
-        verticalPanel.add(instructionsPanel);
+        flashCards.add(instructionsPanel);
     }
 
     private void addSpellAndEffectPanel()
@@ -105,14 +120,14 @@ public class NEWTsPracticeTest extends JFrame
         effect.setPreferredSize(new Dimension(400, 40));
         Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
         effect.setBorder(border);
-        effect.setText("Please write the incantation here: ");
+        effect.setText("Effect Goes Here");
         spellAndEffect.add(effect);
 
         incantation = new JTextField();
         incantation.setPreferredSize(new Dimension(200, 40));
         spellAndEffect.add(incantation);
 
-        verticalPanel.add(spellAndEffect);
+        flashCards.add(spellAndEffect);
     }
 
     private void addSubmitAndResultsPanel()
@@ -121,9 +136,6 @@ public class NEWTsPracticeTest extends JFrame
         submitAndResults.setLayout(new FlowLayout());
 
         results = new JLabel();
-        Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
-        results.setBorder(border);
-        results.setText("Your Results Go Here: ");
         submitAndResults.add(results);
 
         submitAnswer = new JButton("Submit Your Answer");
@@ -133,9 +145,21 @@ public class NEWTsPracticeTest extends JFrame
         verticalPanel.add(submitAndResults);
     }
 
+    public void setCategorySelectedIndex(int i)
+    {
+        category.setSelectedIndex(i);
+    }
+
+    public void setCategorySelected(String categorySelectedText)
+    {
+        categorySelected.setText(categorySelectedText);
+    }
+
     private void onSubmitCategory(ActionEvent actionEvent)
     {
-        presenter.loadSpellInformation(Objects.requireNonNull(category.getSelectedItem()).toString());
+        String selectedCategory = Objects.requireNonNull(category.getSelectedItem()).toString();
+        presenter.resetFlashCard(selectedCategory);
+        presenter.loadSpellInformation(selectedCategory);
     }
 
     public void setEffect(String spellEffect)
@@ -146,6 +170,7 @@ public class NEWTsPracticeTest extends JFrame
     private void onSubmitClicked(ActionEvent actionEvent)
     {
         presenter.checkAnswer(incantation.getText());
+        presenter.potentiallyEndPracticeExam();
     }
 
     public void setResult(String result)
@@ -155,9 +180,8 @@ public class NEWTsPracticeTest extends JFrame
 
     public static void main(String[] args)
     {
-        JFrame jFrame = new NEWTsPracticeTest();
+        JFrame jFrame = new NEWTsPracticeExam();
 
         jFrame.setVisible(true);
     }
-
 }

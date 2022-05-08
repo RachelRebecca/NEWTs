@@ -3,11 +3,12 @@ import io.reactivex.schedulers.Schedulers;
 import json.Spell;
 import json.SpellList;
 
+import javax.swing.*;
 import java.util.Random;
 
 public class NEWTsPresenter
 {
-    private NEWTsPracticeTest view;
+    private NEWTsPracticeExam view;
     private SpellGenerator model;
     private Disposable disposable;
 
@@ -15,23 +16,45 @@ public class NEWTsPresenter
     String name = null;
     String incantation = null;
     String effect = null;
+    String category = null;
 
     int totalAsked = 0;
     int totalCorrect = 0;
 
-    public NEWTsPresenter(NEWTsPracticeTest view, SpellGenerator model)
+    public NEWTsPresenter(NEWTsPracticeExam view, SpellGenerator model)
     {
         this.view = view;
         this.model = model;
     }
 
+    public void resetFlashCard(String category)
+    {
+        if (category.equals("--"))
+        {
+            view.setEffect("Effect Goes Here");
+            view.setResult("");
+        }
+    }
+
     public void loadSpellInformation(String category)
+    {
+        if (!category.equals("--"))
+        {
+            view.setCategorySelected("");
+            getNewQuestion(category);
+        }
+        else
+        {
+            view.setCategorySelected("No Category Selected.");
+        }
+    }
+
+    private void getNewQuestion(String category)
     {
         disposable = model.getSpell(category)
                 .subscribeOn(Schedulers.io()) // do this request in the background
                 .observeOn(Schedulers.newThread())   // run onNext in a new thread
                 .subscribe(this::onNext, this::onError);
-
     }
 
     private void onNext(SpellList spells)
@@ -44,6 +67,7 @@ public class NEWTsPresenter
         effect = spell.getEffect();
         name = spell.getName();
         incantation = spell.getIncantation();
+        category = spell.getType();
         view.setEffect(effect);
     }
 
@@ -76,5 +100,48 @@ public class NEWTsPresenter
                 view.setResult("Incorrect, the correct answer was " + value);
             }
         }
+        else
+        {
+            view.setResult("You must select a category first.");
+        }
+    }
+
+    public void potentiallyEndPracticeExam()
+    {
+        int outOf = 10;
+        if (totalAsked == outOf)
+        {
+            double percent = ((totalCorrect + 0.0 / totalAsked) * outOf);
+            JOptionPane.showMessageDialog(null,
+                    "You scored " + totalCorrect + " / " + totalAsked + ": " + percent + "%");
+
+            resetDefaults();
+            view.setCategorySelectedIndex(0);
+            resetFlashCard("--");
+        }
+        else if (spellSelected)
+        {
+            try
+            {
+                Thread.sleep(100);
+            } catch (InterruptedException e)
+            {
+                e.printStackTrace();
+            }
+
+            getNewQuestion(category);
+        }
+    }
+
+    private void resetDefaults()
+    {
+        spellSelected = false;
+        name = null;
+        incantation = null;
+        effect = null;
+        category = null;
+
+        totalAsked = 0;
+        totalCorrect = 0;
     }
 }
