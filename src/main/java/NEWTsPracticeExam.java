@@ -162,7 +162,14 @@ public class NEWTsPracticeExam extends JFrame
         effect.setText(spellEffect);
     }
 
-    public void resetIncantation()
+    public void resetToDefaults()
+    {
+        setEffect("Effect Goes Here");
+        resetIncantation();
+        setResult("");
+    }
+
+    private void resetIncantation()
     {
         incantation.setText("");
     }

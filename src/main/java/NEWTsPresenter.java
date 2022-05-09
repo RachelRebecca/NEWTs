@@ -32,9 +32,7 @@ public class NEWTsPresenter
     {
         if (category.equals("--"))
         {
-            view.setEffect("Effect Goes Here");
-            view.resetIncantation();
-            view.setResult("");
+            view.resetToDefaults();
             if (!practiceTestOver)
             {
                 view.setCategorySelected("No Category Selected.");
