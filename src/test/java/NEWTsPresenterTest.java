@@ -25,12 +25,6 @@ class NEWTsPresenterTest
     }
 
     @Test
-    void resetFlashCard()
-    {
-
-    }
-
-    @Test
     void loadSpellInformation()
     {
         //given
@@ -61,15 +55,18 @@ class NEWTsPresenterTest
     }
 
     @Test
-    void checkAnswer()
+    void onSubmitAnswer()
     {
+        //given
+        NEWTsPracticeExam view = mock(NEWTsPracticeExam.class);
+        SpellGenerator model = mock(SpellGenerator.class);
+        NEWTsPresenter presenter = new NEWTsPresenter(view, model);
 
-    }
+        // when
 
-    @Test
-    void potentiallyEndPracticeExam()
-    {
+        presenter.onSubmitAnswer("Aguamenti");
 
+        // then
     }
 
 }
