@@ -63,30 +63,4 @@ class NEWTsPresenterTest
 
     }
 
-    /*
-    @Test
-    void loadWeatherFromZipcode()
-    {
-        //given
-        CurrentWeatherFrame view = mock(CurrentWeatherFrame.class);
-        GetCurrentWeather model = mock(GetCurrentWeather.class);
-        CurrentWeatherPresenter presenter = new CurrentWeatherPresenter(view, model);
-        CurrentWeather currentWeather = mock(CurrentWeather.class);
-
-        //GetCurrentWeather returns an Observable<CurrentWeather> object
-        // by returning a Mock (presenter.loadWeatherFromZipcode("12345"),
-        // you'll get a NullPointerException, because model.getCurrentWeather
-        // is going to return null using the Mock
-
-        doReturn(100.0).when(currentWeather).getTemperature();
-        doReturn(Observable.just(currentWeather)).when(model).getCurrentWeather("00000");
-
-        // when
-        presenter.loadWeatherFromZipcode("00000");
-
-        // then
-        verify(view).setTemperature(100.0);
-    }
-     */
-
 }
