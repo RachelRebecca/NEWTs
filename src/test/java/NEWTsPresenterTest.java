@@ -1,6 +1,7 @@
 import io.reactivex.Observable;
 import io.reactivex.plugins.RxJavaPlugins;
 import io.reactivex.schedulers.Schedulers;
+import json.Spell;
 import json.SpellList;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -33,8 +34,21 @@ class NEWTsPresenterTest
         NEWTsPracticeExam view = mock(NEWTsPracticeExam.class);
         SpellGenerator model = mock(SpellGenerator.class);
         NEWTsPresenter presenter = new NEWTsPresenter(view, model);
-        SpellList currentWeather = mock(SpellList.class);
+        SpellList spellList = mock(SpellList.class);
 
+       doReturn("Conjures water").when(spellList.get(0)).getEffect();
+       doReturn("Aguamenti").when(spellList.get(0)).getIncantation();
+       doReturn("Water-Making Spell").when(spellList.get(0)).getName();
+       doReturn("Conjuration").when(spellList.get(0).getType());
+       doReturn(Observable.just(spellList)).when(model).getSpell("Conjuration");
+
+
+        // when
+        presenter.loadSpellInformation("Conjuration");
+
+        // then
+        verify(view).setCategorySelected("");
+        verify(view).setEffect("Conjures water");
     }
 
     @Test
