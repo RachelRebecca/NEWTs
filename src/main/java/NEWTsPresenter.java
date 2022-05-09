@@ -12,14 +12,15 @@ public class NEWTsPresenter
     private SpellGenerator model;
     private Disposable disposable;
 
-    boolean spellSelected = false;
-    String name = null;
-    String incantation = null;
-    String effect = null;
-    String category = null;
+    private boolean spellSelected = false;
+    private String name = null;
+    private String incantation = null;
+    private String effect = null;
+    private String category = null;
 
-    int totalAsked = 0;
-    int totalCorrect = 0;
+    private int totalAsked = 0;
+    private int totalCorrect = 0;
+    private boolean practiceTestOver = false;
 
     public NEWTsPresenter(NEWTsPracticeExam view, SpellGenerator model)
     {
@@ -27,13 +28,17 @@ public class NEWTsPresenter
         this.model = model;
     }
 
-    public void resetFlashCard(String category)
+    private void resetFlashCard(String category)
     {
         if (category.equals("--"))
         {
             view.setEffect("Effect Goes Here");
             view.resetIncantation();
             view.setResult("");
+            if (!practiceTestOver)
+            {
+                view.setCategorySelected("No Category Selected.");
+            }
         }
     }
 
@@ -46,7 +51,7 @@ public class NEWTsPresenter
         }
         else
         {
-            view.setCategorySelected("No Category Selected.");
+            resetFlashCard(category);
         }
     }
 
@@ -84,7 +89,13 @@ public class NEWTsPresenter
         throwable.printStackTrace();
     }
 
-    public void checkAnswer(String text)
+    public void onSubmitAnswer(String text)
+    {
+        checkAnswer(text);
+        potentiallyEndPracticeExam();
+    }
+
+    private void checkAnswer(String text)
     {
         if (spellSelected)
         {
@@ -107,18 +118,19 @@ public class NEWTsPresenter
         }
     }
 
-    public void potentiallyEndPracticeExam()
+    private void potentiallyEndPracticeExam()
     {
         int outOf = 10;
         if (totalAsked == outOf)
         {
             double percent = ((totalCorrect + 0.0 / totalAsked) * outOf);
-            JOptionPane.showMessageDialog(null,
-                    "You scored " + totalCorrect + " / " + totalAsked + ": " + percent + "%");
+            view.makeJOptionPaneAppear("You scored " + totalCorrect + " / " + totalAsked + ": " + percent + "%");
 
-            resetDefaults();
+            practiceTestOver = true;
             view.setCategorySelectedIndex(0);
             resetFlashCard("--");
+            resetDefaults();
+
         }
         else if (spellSelected)
         {
@@ -144,5 +156,6 @@ public class NEWTsPresenter
 
         totalAsked = 0;
         totalCorrect = 0;
+        practiceTestOver = false;
     }
 }

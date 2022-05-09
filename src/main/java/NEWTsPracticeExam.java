@@ -154,7 +154,6 @@ public class NEWTsPracticeExam extends JFrame
     private void onSelectCategory(ActionEvent actionEvent)
     {
         String selectedCategory = Objects.requireNonNull(category.getSelectedItem()).toString();
-        presenter.resetFlashCard(selectedCategory);
         presenter.loadSpellInformation(selectedCategory);
     }
 
@@ -170,13 +169,17 @@ public class NEWTsPracticeExam extends JFrame
 
     private void onSubmitClicked(ActionEvent actionEvent)
     {
-        presenter.checkAnswer(incantation.getText());
-        presenter.potentiallyEndPracticeExam();
+        presenter.onSubmitAnswer(incantation.getText());
     }
 
     public void setResult(String result)
     {
         results.setText(result);
+    }
+
+    public void makeJOptionPaneAppear(String text)
+    {
+        JOptionPane.showMessageDialog(null, text);
     }
 
     public static void main(String[] args)
