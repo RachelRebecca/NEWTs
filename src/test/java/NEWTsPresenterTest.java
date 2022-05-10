@@ -33,17 +33,15 @@ class NEWTsPresenterTest
         NEWTsPresenter presenter = new NEWTsPresenter(view, model);
 
         SpellList spellList = mock(SpellList.class);
+        Spell spell = mock(Spell.class);
 
         when(spellList.size()).thenReturn(1);
-        System.out.println("size: " + spellList.size());
-        when(spellList.get(0)).thenReturn(new Spell());
-        System.out.println("size[0]: " + spellList.get(0));
+        when(spellList.get(0)).thenReturn(spell);
 
-        doReturn("Conjures water").when(spellList.get(0)).getEffect();
-        System.out.println("effect: " + spellList.get(0).getEffect());
-        doReturn("Aguamenti").when(spellList.get(0)).getIncantation();
-        doReturn("Water-Making Spell").when(spellList.get(0)).getName();
-        doReturn("Conjuration").when(spellList.get(0).getType());
+        doReturn("Conjures water").when(spell).getEffect();
+        doReturn("Aguamenti").when(spell).getIncantation();
+        doReturn("Water-Making Spell").when(spell).getName();
+        doReturn("Conjuration").when(spell).getType();
         doReturn(Observable.just(spellList)).when(model).getSpell("Conjuration");
 
         // when
@@ -51,7 +49,7 @@ class NEWTsPresenterTest
 
         // then
         verify(view).setCategorySelected("");
-        verify(view).setEffect("Conjures water");
+        verify(view).setEffect("<html>Conjures water</html>");
     }
 
     @Test
