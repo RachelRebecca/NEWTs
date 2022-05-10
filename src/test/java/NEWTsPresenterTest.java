@@ -53,7 +53,7 @@ class NEWTsPresenterTest
     }
 
     @Test
-    void onSubmitAnswer()
+    void onSubmitAnswerBlankCategory()
     {
         //given
         NEWTsPracticeExam view = mock(NEWTsPracticeExam.class);
@@ -63,8 +63,35 @@ class NEWTsPresenterTest
         // when
 
         presenter.onSubmitAnswer("Aguamenti");
-
         // then
     }
+
+    @Test
+    void onSubmitAnswerRight()
+    {
+        //given
+        NEWTsPracticeExam view = mock(NEWTsPracticeExam.class);
+        SpellGenerator model = mock(SpellGenerator.class);
+        NEWTsPresenter presenter = new NEWTsPresenter(view, model);
+
+        // when
+
+
+        // Here, I want to test onSubmitAnswer, but I don't have access to spellSelected,
+        // or any of the private methods
+    }
+
+    @Test
+    void onSubmitAnswerWrong()
+    {
+        //given
+        NEWTsPracticeExam view = mock(NEWTsPracticeExam.class);
+        SpellGenerator model = mock(SpellGenerator.class);
+        NEWTsPresenter presenter = new NEWTsPresenter(view, model);
+
+        // when
+
+    }
+
 
 }
