@@ -37,6 +37,22 @@ class NEWTsPresenterTest
     }
 
     @Test
+    void loadSpellInformation_NoSelectedCategory()
+    {
+        //given
+        NEWTsPracticeExam view = mock(NEWTsPracticeExam.class);
+        SpellGenerator model = mock(SpellGenerator.class);
+        NEWTsPresenter presenter = new NEWTsPresenter(view, model);
+
+        // when
+        presenter.loadSpellInformation("--");
+
+        // then
+        verify(view).resetToDefaults();
+        verify(view).setCategorySelected("No Category Selected.");
+    }
+
+    @Test
     void onSubmitAnswerBlankCategory()
     {
         //given
