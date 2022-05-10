@@ -11,21 +11,25 @@ public class NEWTsPresenter
     private NEWTsPracticeExam view;
     private SpellGenerator model;
     private Disposable disposable;
+    private Random rand;
 
-    private boolean spellSelected = false;
-    private String name = null;
-    private String incantation = null;
-    private String effect = null;
-    private String category = null;
+    // the following values are package private for the purpose of testing:
+    boolean spellSelected = false;
+    String name = null;
+    String incantation = null;
+    String effect = null;
+    String category = null;
 
-    private int totalAsked = 0;
-    private int totalCorrect = 0;
+    int totalAsked = 0;
+    int totalCorrect = 0;
     private boolean practiceTestOver = false;
 
     public NEWTsPresenter(NEWTsPracticeExam view, SpellGenerator model)
     {
         this.view = view;
         this.model = model;
+
+        this.rand = new Random();
     }
 
     private void resetFlashCard(String category)
@@ -77,7 +81,6 @@ public class NEWTsPresenter
 
     private int getRandomSpellIndex(SpellList spells)
     {
-        Random rand = new Random();
         return rand.nextInt(spells.size());
     }
 

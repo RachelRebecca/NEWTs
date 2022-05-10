@@ -11,7 +11,6 @@ class SpellGeneratorTest
     {
         //given
         SpellGenerator spellGenerator = new SpellGenerator();
-        boolean spellFound = false;
 
         // when
         SpellList spellList = spellGenerator.getSpell("Conjuration")
@@ -35,11 +34,10 @@ class SpellGeneratorTest
                 assertEquals(spell.getLight(), "IcyBlue");
                 assertEquals(spell.getType(), "Conjuration");
 
-                spellFound = true;
-                break;
+                return;
             }
         }
 
-        assertTrue(spellFound);
+       fail("Spell was not found.");
     }
 }
