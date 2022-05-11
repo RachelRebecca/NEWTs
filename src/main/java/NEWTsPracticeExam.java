@@ -169,7 +169,7 @@ public class NEWTsPracticeExam extends JFrame
         setResult("");
     }
 
-    private void resetIncantation()
+    public void resetIncantation()
     {
         incantation.setText("");
     }

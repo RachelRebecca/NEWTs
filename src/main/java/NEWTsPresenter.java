@@ -100,6 +100,7 @@ public class NEWTsPresenter
     {
         if (spellSelected)
         {
+            view.resetIncantation();
             totalAsked++;
 
             String value = (incantation == null) ? name : incantation;
