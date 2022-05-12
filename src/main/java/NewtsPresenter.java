@@ -85,7 +85,8 @@ public class NewtsPresenter
 
     private void onError(Throwable throwable)
     {
-        view.setEffect((throwable.getMessage() == null) ? "Something went wrong" : throwable.getMessage());
+        view.setEffect((throwable.getMessage() == null)
+                ? "Something went wrong" : throwable.getMessage());
         throwable.printStackTrace();
     }
 

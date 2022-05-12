@@ -14,6 +14,6 @@ public class WizardWorldServiceFactory
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
 
-        return retrofit.create(WizardWorldService.class); // retrofit implements the interface for us
+        return retrofit.create(WizardWorldService.class);
     }
 }
