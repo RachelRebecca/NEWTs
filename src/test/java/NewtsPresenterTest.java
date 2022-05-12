@@ -3,16 +3,17 @@ import io.reactivex.plugins.RxJavaPlugins;
 import io.reactivex.schedulers.Schedulers;
 import json.Spell;
 import json.SpellList;
-import json.WizardWorldAPI;
+import json.WizardWorldService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.*;
 
-class NEWTsPresenterTest
+class NewtsPresenterTest
 {
+    // this will run one time before all tests in this class
     @BeforeAll
-    public static void beforeAllTests() // this will run one time before all tests in this class
+    public static void beforeAllTests()
     {
         // the following code makes tests run single-threaded
         RxJavaPlugins.setIoSchedulerHandler((scheduler) -> Schedulers.trampoline());
@@ -23,11 +24,11 @@ class NEWTsPresenterTest
     void loadSpellInformation()
     {
         //given
-        NEWTsPracticeExam view = mock(NEWTsPracticeExam.class);
-        WizardWorldAPI model = mock(WizardWorldAPI.class);
-        NEWTsPresenter presenter = new NEWTsPresenter(view, model);
+        NewtsPracticeExam view = mock(NewtsPracticeExam.class);
+        WizardWorldService model = mock(WizardWorldService.class);
+        NewtsPresenter presenter = new NewtsPresenter(view, model);
 
-        SetUpAguamentiSpell(model);
+        setUpAguamentiSpell(model);
 
         // when
         presenter.loadSpellInformation("Conjuration");
@@ -41,9 +42,9 @@ class NEWTsPresenterTest
     void loadSpellInformation_NoSelectedCategory()
     {
         //given
-        NEWTsPracticeExam view = mock(NEWTsPracticeExam.class);
-        WizardWorldAPI model = mock(WizardWorldAPI.class);
-        NEWTsPresenter presenter = new NEWTsPresenter(view, model);
+        NewtsPracticeExam view = mock(NewtsPracticeExam.class);
+        WizardWorldService model = mock(WizardWorldService.class);
+        NewtsPresenter presenter = new NewtsPresenter(view, model);
 
         // when
         presenter.loadSpellInformation("--");
@@ -57,9 +58,9 @@ class NEWTsPresenterTest
     void onSubmitAnswerBlankCategory()
     {
         //given
-        NEWTsPracticeExam view = mock(NEWTsPracticeExam.class);
-        WizardWorldAPI model = mock(WizardWorldAPI.class);
-        NEWTsPresenter presenter = new NEWTsPresenter(view, model);
+        NewtsPracticeExam view = mock(NewtsPracticeExam.class);
+        WizardWorldService model = mock(WizardWorldService.class);
+        NewtsPresenter presenter = new NewtsPresenter(view, model);
 
         presenter.spellSelected = false;
 
@@ -75,39 +76,41 @@ class NEWTsPresenterTest
     void onSubmitAnswer_Right()
     {
         //given
-        NEWTsPracticeExam view = mock(NEWTsPracticeExam.class);
-        WizardWorldAPI model = mock(WizardWorldAPI.class);
-        NEWTsPresenter presenter = new NEWTsPresenter(view, model);
+        NewtsPracticeExam view = mock(NewtsPracticeExam.class);
+        WizardWorldService model = mock(WizardWorldService.class);
+        NewtsPresenter presenter = new NewtsPresenter(view, model);
 
         presenter.spellSelected = true;
         presenter.incantation = "Aguamenti";
         presenter.effect = "Conjures Water";
         presenter.category = "Conjuration";
 
-        SetUpShootingArrowSpell(model); // prepare for next question
+        setUpShootingArrowSpell(model); // prepare for next question
 
         // when
         presenter.onSubmitAnswer("Aguamenti");
 
         // then
         verify(view).setResult("Correct!");
-        verify(view).setEffect("<html>Conjures a shooting arrow from the caster's wand</html>");
+        verify(view).setEffect("<html>Conjures a shooting arrow "
+                + "from the caster's wand</html>");
+
     }
 
     @Test
     void onSubmitAnswer_NullIncantation()
     {
         //given
-        NEWTsPracticeExam view = mock(NEWTsPracticeExam.class);
-        WizardWorldAPI model = mock(WizardWorldAPI.class);
-        NEWTsPresenter presenter = new NEWTsPresenter(view, model);
+        NewtsPracticeExam view = mock(NewtsPracticeExam.class);
+        WizardWorldService model = mock(WizardWorldService.class);
+        NewtsPresenter presenter = new NewtsPresenter(view, model);
 
         presenter.spellSelected = true;
         presenter.incantation = null;
         presenter.name = "Arrow Shooting Spell";
         presenter.category = "Conjuration";
 
-        SetUpAguamentiSpell(model); // prepare for next question
+        setUpAguamentiSpell(model); // prepare for next question
 
         // when
         presenter.onSubmitAnswer("Arrow Shooting Spell");
@@ -121,16 +124,16 @@ class NEWTsPresenterTest
     void onSubmitAnswer_Wrong()
     {
         //given
-        NEWTsPracticeExam view = mock(NEWTsPracticeExam.class);
-        WizardWorldAPI model = mock(WizardWorldAPI.class);
-        NEWTsPresenter presenter = new NEWTsPresenter(view, model);
+        NewtsPracticeExam view = mock(NewtsPracticeExam.class);
+        WizardWorldService model = mock(WizardWorldService.class);
+        NewtsPresenter presenter = new NewtsPresenter(view, model);
 
         presenter.spellSelected = true;
         presenter.incantation = "Aguamenti";
         presenter.effect = "Conjures Water";
         presenter.category = "Conjuration";
 
-        SetUpShootingArrowSpell(model); // prepare for next question
+        setUpShootingArrowSpell(model); // prepare for next question
 
         // when
         presenter.onSubmitAnswer("Agua Spell");
@@ -143,9 +146,9 @@ class NEWTsPresenterTest
     void onSubmitAnswer_EndExamination()
     {
         //given
-        NEWTsPracticeExam view = mock(NEWTsPracticeExam.class);
-        WizardWorldAPI model = mock(WizardWorldAPI.class);
-        NEWTsPresenter presenter = new NEWTsPresenter(view, model);
+        NewtsPracticeExam view = mock(NewtsPracticeExam.class);
+        WizardWorldService model = mock(WizardWorldService.class);
+        NewtsPresenter presenter = new NewtsPresenter(view, model);
 
         presenter.spellSelected = true;
         presenter.incantation = "Aguamenti";
@@ -157,12 +160,12 @@ class NEWTsPresenterTest
         presenter.onSubmitAnswer("Aguamenti");
 
         // then
-        verify(view).makeJOptionPaneAppear("You scored " + 2 + " / " + 10 + ": " + 20.0 + "%");
+        verify(view).showResultsMessage("You scored " + 2 + " / "
+                + 10 + ": " + 20.0 + "%");
         verify(view).setCategorySelectedIndex(0);
     }
 
-
-    private void SetUpAguamentiSpell(WizardWorldAPI model)
+    private void setUpAguamentiSpell(WizardWorldService model)
     {
         SpellList spellList = mock(SpellList.class);
         Spell spell = mock(Spell.class);
@@ -177,7 +180,7 @@ class NEWTsPresenterTest
         doReturn(Observable.just(spellList)).when(model).getSpell("Conjuration");
     }
 
-    private void SetUpShootingArrowSpell(WizardWorldAPI model)
+    private void setUpShootingArrowSpell(WizardWorldService model)
     {
         SpellList spellList = mock(SpellList.class);
         Spell spell = mock(Spell.class);

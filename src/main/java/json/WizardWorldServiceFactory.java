@@ -4,9 +4,9 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class WizardWorldAPIFactory
+public class WizardWorldServiceFactory
 {
-    public WizardWorldAPI getInstance()
+    public WizardWorldService getInstance()
     {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://wizard-world-api.herokuapp.com")
@@ -14,6 +14,6 @@ public class WizardWorldAPIFactory
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
 
-        return retrofit.create(WizardWorldAPI.class); // retrofit implements the interface for us
+        return retrofit.create(WizardWorldService.class); // retrofit implements the interface for us
     }
 }

@@ -4,17 +4,19 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.Objects;
 
-import json.WizardWorldAPIFactory;
+import json.WizardWorldServiceFactory;
 
-public class NEWTsPracticeExam extends JFrame
+public class NewtsPracticeExam extends JFrame
 {
     private JPanel verticalPanel;
 
     private final String[] availableCategories =
-            {"--", "Charm", "Conjuration", "Spell", "Transfiguration", "HealingSpell",
-                    "DarkCharm", "Jinx", "Curse", "MagicalTransportation", "Hex", "CounterSpell",
-                    "DarkArts", "CounterJinx", "CounterCharm", "Untransfiguration",
-                    "BindingMagicalContract", "Vanishment"};
+            {
+                    "--", "Charm", "Conjuration", "Spell", "Transfiguration", "HealingSpell",
+                    "DarkCharm", "Jinx", "Curse", "MagicalTransportation", "Hex",
+                    "CounterSpell", "DarkArts", "CounterJinx", "CounterCharm",
+                    "Untransfiguration", "BindingMagicalContract", "Vanishment"
+            };
     private JComboBox<String> category;
     private JLabel categorySelected;
 
@@ -26,9 +28,9 @@ public class NEWTsPracticeExam extends JFrame
     private JButton submitAnswer;
     private JLabel results;
 
-    private NEWTsPresenter presenter;
+    private NewtsPresenter presenter;
 
-    public NEWTsPracticeExam()
+    public NewtsPracticeExam()
     {
         setForm();
 
@@ -59,8 +61,8 @@ public class NEWTsPracticeExam extends JFrame
     {
         // presenter = new NEWTsPresenter(this, new SpellGenerator());
 
-        WizardWorldAPIFactory factory = new WizardWorldAPIFactory();
-        presenter = new NEWTsPresenter(this, factory.getInstance());
+        WizardWorldServiceFactory factory = new WizardWorldServiceFactory();
+        presenter = new NewtsPresenter(this, factory.getInstance());
 
         addChooseCategoryPanel();
 
@@ -104,8 +106,10 @@ public class NEWTsPracticeExam extends JFrame
         instructionsPanel.setLayout(new FlowLayout());
 
         instructions = new JLabel();
-        String instructionsText = "<html>Write out the incantation that causes the following effect. <br/>" +
-                "In the absence of a formal incantation, please write the name of the spell.</html>";
+        String instructionsText = "<html>Write out the incantation that causes "
+                + "the following effect. <br/>"
+                + "In the absence of a formal incantation, "
+                + "please write the name of the spell.</html>";
         instructions.setText(instructionsText);
         instructionsPanel.add(instructions);
 
@@ -189,14 +193,14 @@ public class NEWTsPracticeExam extends JFrame
         results.setText(result);
     }
 
-    public void makeJOptionPaneAppear(String text)
+    public void showResultsMessage(String text)
     {
         JOptionPane.showMessageDialog(null, text);
     }
 
     public static void main(String[] args)
     {
-        JFrame jFrame = new NEWTsPracticeExam();
+        JFrame jFrame = new NewtsPracticeExam();
 
         jFrame.setVisible(true);
     }

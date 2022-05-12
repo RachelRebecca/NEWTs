@@ -1,19 +1,19 @@
 import json.Spell;
 import json.SpellList;
-import json.WizardWorldAPI;
-import json.WizardWorldAPIFactory;
+import json.WizardWorldService;
+import json.WizardWorldServiceFactory;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class WizardWorldAPITest
+class WizardWorldServiceTest
 {
     @Test
     void getSpell()
     {
         //given
-        WizardWorldAPIFactory factory = new WizardWorldAPIFactory();
-        WizardWorldAPI service = factory.getInstance();
+        WizardWorldServiceFactory factory = new WizardWorldServiceFactory();
+        WizardWorldService service = factory.getInstance();
 
         // when
         SpellList spellList = service.getSpell("Conjuration")
@@ -21,11 +21,11 @@ class WizardWorldAPITest
 
         // then
         Spell firstSpell = spellList.get(0);
-        System.out.println("name: " + firstSpell.getName() +
-                "\neffect: " + firstSpell.getEffect() +
-                "\nincantation: " + firstSpell.getIncantation() +
-                "\nis it verbal: " + firstSpell.getVerbal() +
-                "\nlight: " + firstSpell.getLight());
+        System.out.println("name: " + firstSpell.getName()
+                + "\neffect: " + firstSpell.getEffect()
+                + "\nincantation: " + firstSpell.getIncantation()
+                + "\nis it verbal: " + firstSpell.getVerbal()
+                + "\nlight: " + firstSpell.getLight());
 
         for (Spell spell : spellList)
         {
