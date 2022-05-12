@@ -1,19 +1,22 @@
 import json.Spell;
 import json.SpellList;
+import json.WizardWorldAPI;
+import json.WizardWorldAPIFactory;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SpellGeneratorTest
+class WizardWorldAPITest
 {
     @Test
     void getSpell()
     {
         //given
-        SpellGenerator spellGenerator = new SpellGenerator();
+        WizardWorldAPIFactory factory = new WizardWorldAPIFactory();
+        WizardWorldAPI service = factory.getInstance();
 
         // when
-        SpellList spellList = spellGenerator.getSpell("Conjuration")
+        SpellList spellList = service.getSpell("Conjuration")
                 .blockingFirst();
 
         // then

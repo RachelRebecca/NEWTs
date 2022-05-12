@@ -2,6 +2,8 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import json.Spell;
 import json.SpellList;
+import json.WizardWorldAPI;
+import json.WizardWorldAPIFactory;
 
 import javax.swing.*;
 import java.util.Random;
@@ -9,7 +11,7 @@ import java.util.Random;
 public class NEWTsPresenter
 {
     private NEWTsPracticeExam view;
-    private SpellGenerator model;
+    private WizardWorldAPI model;
     private Disposable disposable;
     private Random rand;
 
@@ -24,7 +26,7 @@ public class NEWTsPresenter
     int totalCorrect = 0;
     private boolean practiceTestOver = false;
 
-    public NEWTsPresenter(NEWTsPracticeExam view, SpellGenerator model)
+    public NEWTsPresenter(NEWTsPracticeExam view, WizardWorldAPI model)
     {
         this.view = view;
         this.model = model;

@@ -3,6 +3,7 @@ import io.reactivex.plugins.RxJavaPlugins;
 import io.reactivex.schedulers.Schedulers;
 import json.Spell;
 import json.SpellList;
+import json.WizardWorldAPI;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +24,7 @@ class NEWTsPresenterTest
     {
         //given
         NEWTsPracticeExam view = mock(NEWTsPracticeExam.class);
-        SpellGenerator model = mock(SpellGenerator.class);
+        WizardWorldAPI model = mock(WizardWorldAPI.class);
         NEWTsPresenter presenter = new NEWTsPresenter(view, model);
 
         SetUpAguamentiSpell(model);
@@ -41,7 +42,7 @@ class NEWTsPresenterTest
     {
         //given
         NEWTsPracticeExam view = mock(NEWTsPracticeExam.class);
-        SpellGenerator model = mock(SpellGenerator.class);
+        WizardWorldAPI model = mock(WizardWorldAPI.class);
         NEWTsPresenter presenter = new NEWTsPresenter(view, model);
 
         // when
@@ -57,7 +58,7 @@ class NEWTsPresenterTest
     {
         //given
         NEWTsPracticeExam view = mock(NEWTsPracticeExam.class);
-        SpellGenerator model = mock(SpellGenerator.class);
+        WizardWorldAPI model = mock(WizardWorldAPI.class);
         NEWTsPresenter presenter = new NEWTsPresenter(view, model);
 
         presenter.spellSelected = false;
@@ -75,7 +76,7 @@ class NEWTsPresenterTest
     {
         //given
         NEWTsPracticeExam view = mock(NEWTsPracticeExam.class);
-        SpellGenerator model = mock(SpellGenerator.class);
+        WizardWorldAPI model = mock(WizardWorldAPI.class);
         NEWTsPresenter presenter = new NEWTsPresenter(view, model);
 
         presenter.spellSelected = true;
@@ -98,7 +99,7 @@ class NEWTsPresenterTest
     {
         //given
         NEWTsPracticeExam view = mock(NEWTsPracticeExam.class);
-        SpellGenerator model = mock(SpellGenerator.class);
+        WizardWorldAPI model = mock(WizardWorldAPI.class);
         NEWTsPresenter presenter = new NEWTsPresenter(view, model);
 
         presenter.spellSelected = true;
@@ -121,7 +122,7 @@ class NEWTsPresenterTest
     {
         //given
         NEWTsPracticeExam view = mock(NEWTsPracticeExam.class);
-        SpellGenerator model = mock(SpellGenerator.class);
+        WizardWorldAPI model = mock(WizardWorldAPI.class);
         NEWTsPresenter presenter = new NEWTsPresenter(view, model);
 
         presenter.spellSelected = true;
@@ -143,7 +144,7 @@ class NEWTsPresenterTest
     {
         //given
         NEWTsPracticeExam view = mock(NEWTsPracticeExam.class);
-        SpellGenerator model = mock(SpellGenerator.class);
+        WizardWorldAPI model = mock(WizardWorldAPI.class);
         NEWTsPresenter presenter = new NEWTsPresenter(view, model);
 
         presenter.spellSelected = true;
@@ -162,7 +163,7 @@ class NEWTsPresenterTest
 
 
 
-    private void SetUpAguamentiSpell(SpellGenerator model)
+    private void SetUpAguamentiSpell(WizardWorldAPI model)
     {
         SpellList spellList = mock(SpellList.class);
         Spell spell = mock(Spell.class);
@@ -177,7 +178,7 @@ class NEWTsPresenterTest
         doReturn(Observable.just(spellList)).when(model).getSpell("Conjuration");
     }
 
-    private void SetUpShootingArrowSpell(SpellGenerator model)
+    private void SetUpShootingArrowSpell(WizardWorldAPI model)
     {
         SpellList spellList = mock(SpellList.class);
         Spell spell = mock(Spell.class);

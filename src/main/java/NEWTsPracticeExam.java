@@ -3,6 +3,7 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.Objects;
+import json.WizardWorldAPIFactory;
 
 public class NEWTsPracticeExam extends JFrame
 {
@@ -55,7 +56,10 @@ public class NEWTsPracticeExam extends JFrame
 
     private void setInitialValues()
     {
-        presenter = new NEWTsPresenter(this, new SpellGenerator());
+       // presenter = new NEWTsPresenter(this, new SpellGenerator());
+
+        WizardWorldAPIFactory factory = new WizardWorldAPIFactory();
+        presenter = new NEWTsPresenter(this, factory.getInstance());
 
         addChooseCategoryPanel();
 
