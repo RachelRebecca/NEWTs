@@ -22,7 +22,7 @@ class WizardWorldAPITest
         // then
         Spell firstSpell = spellList.get(0);
         System.out.println("name: " + firstSpell.getName() +
-                "\neffect: " +  firstSpell.getEffect() +
+                "\neffect: " + firstSpell.getEffect() +
                 "\nincantation: " + firstSpell.getIncantation() +
                 "\nis it verbal: " + firstSpell.getVerbal() +
                 "\nlight: " + firstSpell.getLight());
@@ -41,6 +41,6 @@ class WizardWorldAPITest
             }
         }
 
-       fail("Spell was not found.");
+        fail("Spell was not found.");
     }
 }

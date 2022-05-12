@@ -52,8 +52,7 @@ public class NEWTsPresenter
         {
             view.setCategorySelected("");
             getNewQuestion(category);
-        }
-        else
+        } else
         {
             resetFlashCard(category);
         }
@@ -110,13 +109,11 @@ public class NEWTsPresenter
             {
                 totalCorrect++;
                 view.setResult("Correct!");
-            }
-            else
+            } else
             {
                 view.setResult("Incorrect, the correct answer was " + value);
             }
-        }
-        else
+        } else
         {
             view.setResult("You must select a category first.");
         }
@@ -135,8 +132,7 @@ public class NEWTsPresenter
             resetFlashCard("--");
             resetDefaults();
 
-        }
-        else if (spellSelected)
+        } else if (spellSelected)
         {
             try
             {

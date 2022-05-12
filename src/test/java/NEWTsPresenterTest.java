@@ -162,7 +162,6 @@ class NEWTsPresenterTest
     }
 
 
-
     private void SetUpAguamentiSpell(WizardWorldAPI model)
     {
         SpellList spellList = mock(SpellList.class);

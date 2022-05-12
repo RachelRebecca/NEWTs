@@ -3,6 +3,7 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.Objects;
+
 import json.WizardWorldAPIFactory;
 
 public class NEWTsPracticeExam extends JFrame
@@ -11,9 +12,9 @@ public class NEWTsPracticeExam extends JFrame
 
     private final String[] availableCategories =
             {"--", "Charm", "Conjuration", "Spell", "Transfiguration", "HealingSpell",
-            "DarkCharm", "Jinx", "Curse", "MagicalTransportation", "Hex", "CounterSpell",
-            "DarkArts", "CounterJinx", "CounterCharm", "Untransfiguration",
-            "BindingMagicalContract", "Vanishment"};
+                    "DarkCharm", "Jinx", "Curse", "MagicalTransportation", "Hex", "CounterSpell",
+                    "DarkArts", "CounterJinx", "CounterCharm", "Untransfiguration",
+                    "BindingMagicalContract", "Vanishment"};
     private JComboBox<String> category;
     private JLabel categorySelected;
 
@@ -56,7 +57,7 @@ public class NEWTsPracticeExam extends JFrame
 
     private void setInitialValues()
     {
-       // presenter = new NEWTsPresenter(this, new SpellGenerator());
+        // presenter = new NEWTsPresenter(this, new SpellGenerator());
 
         WizardWorldAPIFactory factory = new WizardWorldAPIFactory();
         presenter = new NEWTsPresenter(this, factory.getInstance());
