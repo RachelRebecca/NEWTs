@@ -200,8 +200,8 @@ public class NewtsPracticeExam extends JFrame
 
     public static void main(String[] args)
     {
-        JFrame jFrame = new NewtsPracticeExam();
+        JFrame frame = new NewtsPracticeExam();
 
-        jFrame.setVisible(true);
+        frame.setVisible(true);
     }
 }
