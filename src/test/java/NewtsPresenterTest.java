@@ -1,4 +1,4 @@
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import io.reactivex.plugins.RxJavaPlugins;
 import io.reactivex.schedulers.Schedulers;
 import json.Spell;
@@ -177,7 +177,7 @@ class NewtsPresenterTest
         doReturn("Aguamenti").when(spell).getIncantation();
         doReturn("Water-Making Spell").when(spell).getName();
         doReturn("Conjuration").when(spell).getType();
-        doReturn(Observable.just(spellList)).when(model).getSpell("Conjuration");
+        doReturn(Single.just(spellList)).when(model).getSpell("Conjuration");
     }
 
     private void setUpShootingArrowSpell(WizardWorldService model)
@@ -192,7 +192,7 @@ class NewtsPresenterTest
         doReturn(null).when(spell).getIncantation();
         doReturn("Arrow Shooting Spell").when(spell).getName();
         doReturn("Conjuration").when(spell).getType();
-        doReturn(Observable.just(spellList)).when(model).getSpell("Conjuration");
+        doReturn(Single.just(spellList)).when(model).getSpell("Conjuration");
     }
 
 }

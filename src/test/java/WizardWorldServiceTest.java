@@ -17,7 +17,7 @@ class WizardWorldServiceTest
 
         // when
         SpellList spellList = service.getSpell("Conjuration")
-                .blockingFirst();
+                .blockingGet();
 
         // then
         Spell firstSpell = spellList.get(0);
