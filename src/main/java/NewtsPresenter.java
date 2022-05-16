@@ -15,10 +15,7 @@ public class NewtsPresenter
 
     // the following values are package private for the purpose of testing:
     boolean spellSelected = false;
-    String name = null;
-    String incantation = null;
-    String effect = null;
-    String category = null;
+    Spell currSpell = null;
 
     int totalAsked = 0;
     int totalCorrect = 0;
@@ -46,13 +43,13 @@ public class NewtsPresenter
 
     public void loadSpellInformation(String category)
     {
-        if (!category.equals("--"))
+        if (category.equals("--"))
+        {
+            resetFlashCard(category);
+        } else
         {
             view.setCategorySelected("");
             getNewQuestion(category);
-        } else
-        {
-            resetFlashCard(category);
         }
     }
 
@@ -71,11 +68,10 @@ public class NewtsPresenter
         Spell spell = spells.get(index);
 
         spellSelected = true;
-        effect = spell.getEffect();
-        name = spell.getName();
-        incantation = spell.getIncantation();
-        category = spell.getType();
-        view.setEffect("<html>" + effect + "</html>");
+
+        currSpell = spell;
+
+        view.setEffect("<html>" + currSpell.getEffect() + "</html>");
     }
 
     private int getRandomSpellIndex(SpellList spells)
@@ -103,7 +99,9 @@ public class NewtsPresenter
             view.resetIncantation();
             totalAsked++;
 
-            String value = (incantation == null) ? name : incantation;
+            String value = (currSpell.getIncantation() == null)
+                    ? currSpell.getName()
+                    : currSpell.getIncantation();
             if (text.equalsIgnoreCase(value))
             {
                 totalCorrect++;
@@ -142,17 +140,14 @@ public class NewtsPresenter
                 e.printStackTrace();
             }
 
-            getNewQuestion(category);
+            getNewQuestion(currSpell.getType());
         }
     }
 
     private void resetDefaults()
     {
         spellSelected = false;
-        name = null;
-        incantation = null;
-        effect = null;
-        category = null;
+        currSpell = null;
 
         totalAsked = 0;
         totalCorrect = 0;

@@ -81,9 +81,10 @@ class NewtsPresenterTest
         NewtsPresenter presenter = new NewtsPresenter(view, model);
 
         presenter.spellSelected = true;
-        presenter.incantation = "Aguamenti";
-        presenter.effect = "Conjures Water";
-        presenter.category = "Conjuration";
+        presenter.currSpell = new Spell();
+        presenter.currSpell.setIncantation("Aguamenti");
+        presenter.currSpell.setEffect("Conjures Water");
+        presenter.currSpell.setType("Conjuration");
 
         setUpShootingArrowSpell(model); // prepare for next question
 
@@ -106,9 +107,10 @@ class NewtsPresenterTest
         NewtsPresenter presenter = new NewtsPresenter(view, model);
 
         presenter.spellSelected = true;
-        presenter.incantation = null;
-        presenter.name = "Arrow Shooting Spell";
-        presenter.category = "Conjuration";
+        presenter.currSpell = new Spell();
+        presenter.currSpell.setIncantation(null);
+        presenter.currSpell.setName("Arrow Shooting Spell");
+        presenter.currSpell.setType("Conjuration");
 
         setUpAguamentiSpell(model); // prepare for next question
 
@@ -129,9 +131,10 @@ class NewtsPresenterTest
         NewtsPresenter presenter = new NewtsPresenter(view, model);
 
         presenter.spellSelected = true;
-        presenter.incantation = "Aguamenti";
-        presenter.effect = "Conjures Water";
-        presenter.category = "Conjuration";
+        presenter.currSpell = new Spell();
+        presenter.currSpell.setIncantation("Aguamenti");
+        presenter.currSpell.setEffect("Conjures Water");
+        presenter.currSpell.setType("Conjuration");
 
         setUpShootingArrowSpell(model); // prepare for next question
 
@@ -151,17 +154,18 @@ class NewtsPresenterTest
         NewtsPresenter presenter = new NewtsPresenter(view, model);
 
         presenter.spellSelected = true;
-        presenter.incantation = "Aguamenti";
+        presenter.currSpell = new Spell();
+        presenter.currSpell.setIncantation("Aguamenti");
         presenter.totalCorrect = 1;
         presenter.totalAsked = 9;
-        presenter.effect = "Conjures Water";
+        presenter.currSpell.setEffect("Conjures Water");
 
         // when
         presenter.onSubmitAnswer("Aguamenti");
 
         // then
-        verify(view).showResultsMessage("You scored " + 2 + " / "
-                + 10 + ": " + 20.0 + "%");
+        String scoreMessage = "You scored 2 / 10: 20.0%";
+        verify(view).showResultsMessage(scoreMessage);
         verify(view).setCategorySelectedIndex(0);
     }
 

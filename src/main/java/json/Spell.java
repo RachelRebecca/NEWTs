@@ -38,4 +38,34 @@ public class Spell
     {
         return light;
     }
+
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
+    public void setIncantation(String incantation)
+    {
+        this.incantation = incantation;
+    }
+
+    public void setEffect(String effect)
+    {
+        this.effect = effect;
+    }
+
+    public void setVerbal(boolean canBeVerbal)
+    {
+        this.canBeVerbal = canBeVerbal;
+    }
+
+    public void setType(String type)
+    {
+        this.type = type;
+    }
+
+    public void setLight(String light)
+    {
+        this.light = light;
+    }
 }

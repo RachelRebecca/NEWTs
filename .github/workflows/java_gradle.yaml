@@ -3,7 +3,7 @@ name: Java/Gradle CI
 
 # https://docs.github.com/en/actions/guides/building-and-testing-java-with-gradle
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   checkstyle:
