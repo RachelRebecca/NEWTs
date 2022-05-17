@@ -171,9 +171,15 @@ public class NewtsPracticeExam extends JFrame
         effect.setText(spellEffect);
     }
 
+    public void setEffectTextColor(Color color)
+    {
+        effect.setForeground(color);
+    }
+
     public void resetToDefaults()
     {
         setEffect("Effect Goes Here");
+        setEffectTextColor(Color.BLACK);
         resetIncantation();
         setResult("");
     }

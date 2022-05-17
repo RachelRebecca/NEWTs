@@ -4,6 +4,7 @@ import json.Spell;
 import json.SpellList;
 import json.WizardWorldService;
 
+import java.awt.*;
 import java.util.Random;
 
 public class NewtsPresenter
@@ -12,6 +13,8 @@ public class NewtsPresenter
     private WizardWorldService model;
     private Disposable disposable;
     private Random rand;
+
+    private final SpellLightColors colors = new SpellLightColors();
 
     // the following values are package private for the purpose of testing:
     boolean spellSelected = false;
@@ -72,6 +75,9 @@ public class NewtsPresenter
         currSpell = spell;
 
         view.setEffect("<html>" + currSpell.getEffect() + "</html>");
+
+        Color color = colors.lightToColor.get(currSpell.getLight());
+        view.setEffectTextColor(color == null? Color.BLACK : color);
     }
 
     private int getRandomSpellIndex(SpellList spells)
