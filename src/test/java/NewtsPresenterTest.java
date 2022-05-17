@@ -11,6 +11,8 @@ import static org.mockito.Mockito.*;
 
 class NewtsPresenterTest
 {
+    private SpellLightColors colors = new SpellLightColors();
+
     // this will run one time before all tests in this class
     @BeforeAll
     public static void beforeAllTests()
@@ -95,6 +97,7 @@ class NewtsPresenterTest
         verify(view).setResult("Correct!");
         verify(view).setEffect("<html>Conjures a shooting arrow "
                 + "from the caster's wand</html>");
+        verify(view).setEffectTextColor(colors.lightToColor.get("Transparent"));
 
     }
 
@@ -120,6 +123,7 @@ class NewtsPresenterTest
         // then
         verify(view).setResult("Correct!");
         verify(view).setEffect("<html>Conjures water</html>");
+        verify(view).setEffectTextColor(colors.lightToColor.get("IcyBlue"));
     }
 
     @Test
@@ -181,6 +185,7 @@ class NewtsPresenterTest
         doReturn("Aguamenti").when(spell).getIncantation();
         doReturn("Water-Making Spell").when(spell).getName();
         doReturn("Conjuration").when(spell).getType();
+        doReturn("IcyBlue").when(spell).getLight();
         doReturn(Single.just(spellList)).when(model).getSpell("Conjuration");
     }
 
@@ -196,6 +201,7 @@ class NewtsPresenterTest
         doReturn(null).when(spell).getIncantation();
         doReturn("Arrow Shooting Spell").when(spell).getName();
         doReturn("Conjuration").when(spell).getType();
+        doReturn("Transparent").when(spell).getLight();
         doReturn(Single.just(spellList)).when(model).getSpell("Conjuration");
     }
 
