@@ -12,7 +12,7 @@ public class SpellLightColors
         lightToColor.put("Red", Color.RED);
         lightToColor.put("Gold", new Color(212, 175, 55));
         lightToColor.put("Purple", new Color(255, 0, 255));
-        lightToColor.put("Transparent", new Color(192, 90, 192, 40));
+        lightToColor.put("Transparent", new Color(192, 90, 192, 60));
         lightToColor.put("White", Color.WHITE);
         lightToColor.put("Green", Color.GREEN);
         lightToColor.put("Orange", Color.ORANGE);
@@ -21,7 +21,7 @@ public class SpellLightColors
         lightToColor.put("Pink", Color.PINK);
         lightToColor.put("Violet", new Color(207, 159, 255));
         lightToColor.put("Scarlet", new Color(255, 24, 0));
-        lightToColor.put("BlueishWhite", new Color(219, 233, 244));
+        lightToColor.put("BlueishWhite", new Color(150, 233, 244));
         lightToColor.put("Silver", new Color(192, 192, 192));
         lightToColor.put("FieryScarlet", new Color(205, 33, 42));
         lightToColor.put("Grey", Color.GRAY);
