@@ -10,11 +10,11 @@ of the spell to get credit for the question.
 This project uses:
 - [Wizard World API](https://wizard-world-api.herokuapp.com/swagger/index.html)
 - [Retrofit](https://square.github.io/retrofit/)
-- Gson
+- [Gson](https://github.com/google/gson)
 - [Mockito](https://site.mockito.org/)
-- Junit
-- Rx
-- Gradle
+- [Junit](https://junit.org/junit5/)
+- [Rx](https://github.com/ReactiveX/RxJava)
+- [Gradle](https://gradle.org/)
 
 ![NEWTs](screenshots/NEWTsScreenshot.png)
 
