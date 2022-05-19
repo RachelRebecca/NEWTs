@@ -23,6 +23,7 @@ public class NewtsPracticeExam extends JFrame
     private JPanel flashCards;
     private JLabel instructions;
     private JLabel effect;
+    private SpellColor spellColor;
     private JTextField incantation;
 
     private JButton submitAnswer;
@@ -95,6 +96,8 @@ public class NewtsPracticeExam extends JFrame
 
         addSpellAndEffectPanel();
 
+        addSpellHintPanel();
+
         Border border = BorderFactory.createLineBorder(Color.BLACK, 5);
         flashCards.setBorder(border);
         verticalPanel.add(flashCards);
@@ -133,6 +136,21 @@ public class NewtsPracticeExam extends JFrame
         spellAndEffect.add(incantation);
 
         flashCards.add(spellAndEffect);
+    }
+
+    private void addSpellHintPanel()
+    {
+        JPanel spellHint = new JPanel();
+        spellHint.setLayout(new FlowLayout());
+
+        JLabel spellHintText = new JLabel();
+        spellHintText.setText("HINT: Spell produces the following color: ");
+        spellHint.add(spellHintText);
+
+        spellColor = new SpellColor();
+        spellHint.add(spellColor);
+
+        flashCards.add(spellHint);
     }
 
     private void addSubmitAndResultsPanel()
@@ -176,15 +194,16 @@ public class NewtsPracticeExam extends JFrame
         effect.setText(spellEffect);
     }
 
-    public void setEffectTextColor(Color color)
+    public void setSpellColor(String colorName)
     {
-        effect.setForeground(color);
+        spellColor.setColorName(colorName);
+        repaint();
     }
 
     public void resetToDefaults()
     {
         setEffect("Effect Goes Here");
-        setEffectTextColor(Color.BLACK);
+        setSpellColor("");
         resetIncantation();
         setResult("");
     }

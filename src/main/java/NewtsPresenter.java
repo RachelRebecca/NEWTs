@@ -14,8 +14,6 @@ public class NewtsPresenter
     private Disposable disposable;
     private Random rand;
 
-    private final SpellLightColors colors = new SpellLightColors();
-
     // the following values are package private for the purpose of testing:
     boolean spellSelected = false;
     Spell currSpell = null;
@@ -76,8 +74,7 @@ public class NewtsPresenter
 
         view.setEffect("<html>" + currSpell.getEffect() + "</html>");
 
-        Color color = colors.lightToColor.get(currSpell.getLight());
-        view.setEffectTextColor(color == null? Color.BLACK : color);
+        view.setSpellColor(currSpell.getLight());
     }
 
     private int getRandomSpellIndex(SpellList spells)
