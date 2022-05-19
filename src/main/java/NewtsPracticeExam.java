@@ -166,6 +166,11 @@ public class NewtsPracticeExam extends JFrame
         presenter.loadSpellInformation(selectedCategory);
     }
 
+    public String getCategory()
+    {
+        return Objects.requireNonNull(category.getSelectedItem()).toString();
+    }
+
     public void setEffect(String spellEffect)
     {
         effect.setText(spellEffect);

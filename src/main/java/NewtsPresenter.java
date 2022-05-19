@@ -94,6 +94,10 @@ public class NewtsPresenter
 
     public void onSubmitAnswer(String text)
     {
+        if (view.getCategory().equals("--"))
+        {
+            spellSelected = false;
+        }
         checkAnswer(text);
         potentiallyEndPracticeExam();
     }
@@ -135,8 +139,8 @@ public class NewtsPresenter
             view.setCategorySelectedIndex(0);
             resetFlashCard("--");
             resetDefaults();
-
-        } else if (spellSelected)
+        }
+        else if (spellSelected)
         {
             try
             {
@@ -145,7 +149,6 @@ public class NewtsPresenter
             {
                 e.printStackTrace();
             }
-
             getNewQuestion(currSpell.getType());
         }
     }
