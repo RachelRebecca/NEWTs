@@ -64,6 +64,8 @@ class NewtsPresenterTest
         WizardWorldService model = mock(WizardWorldService.class);
         NewtsPresenter presenter = new NewtsPresenter(view, model);
 
+        doReturn("Conjuration").when(view).getCategory();
+
         presenter.spellSelected = false;
 
         // when
@@ -81,6 +83,8 @@ class NewtsPresenterTest
         NewtsPracticeExam view = mock(NewtsPracticeExam.class);
         WizardWorldService model = mock(WizardWorldService.class);
         NewtsPresenter presenter = new NewtsPresenter(view, model);
+
+        doReturn("Conjuration").when(view).getCategory();
 
         presenter.spellSelected = true;
         presenter.currSpell = new Spell();
@@ -109,6 +113,8 @@ class NewtsPresenterTest
         WizardWorldService model = mock(WizardWorldService.class);
         NewtsPresenter presenter = new NewtsPresenter(view, model);
 
+        doReturn("Conjuration").when(view).getCategory();
+
         presenter.spellSelected = true;
         presenter.currSpell = new Spell();
         presenter.currSpell.setIncantation(null);
@@ -134,6 +140,8 @@ class NewtsPresenterTest
         WizardWorldService model = mock(WizardWorldService.class);
         NewtsPresenter presenter = new NewtsPresenter(view, model);
 
+        doReturn("Conjuration").when(view).getCategory();
+
         presenter.spellSelected = true;
         presenter.currSpell = new Spell();
         presenter.currSpell.setIncantation("Aguamenti");
@@ -156,6 +164,8 @@ class NewtsPresenterTest
         NewtsPracticeExam view = mock(NewtsPracticeExam.class);
         WizardWorldService model = mock(WizardWorldService.class);
         NewtsPresenter presenter = new NewtsPresenter(view, model);
+
+        doReturn("Conjuration").when(view).getCategory();
 
         presenter.spellSelected = true;
         presenter.currSpell = new Spell();
