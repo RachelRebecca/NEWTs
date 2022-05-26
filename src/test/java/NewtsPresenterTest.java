@@ -101,7 +101,7 @@ class NewtsPresenterTest
         verify(view).setResult("Correct!");
         verify(view).setEffect("<html>Conjures a shooting arrow "
                 + "from the caster's wand</html>");
-        verify(view).setEffectTextColor(colors.lightToColor.get("Transparent"));
+        verify(view).setSpellColor("Transparent");
 
     }
 
@@ -129,7 +129,7 @@ class NewtsPresenterTest
         // then
         verify(view).setResult("Correct!");
         verify(view).setEffect("<html>Conjures water</html>");
-        verify(view).setEffectTextColor(colors.lightToColor.get("IcyBlue"));
+        verify(view).setSpellColor("IcyBlue");
     }
 
     @Test
