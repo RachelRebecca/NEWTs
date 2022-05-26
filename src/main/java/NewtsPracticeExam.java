@@ -12,10 +12,10 @@ public class NewtsPracticeExam extends JFrame
 
     private final String[] availableCategories =
             {
-                    "--", "Charm", "Conjuration", "Spell", "Transfiguration", "HealingSpell",
-                    "DarkCharm", "Jinx", "Curse", "MagicalTransportation", "Hex",
-                    "CounterSpell", "DarkArts", "CounterJinx", "CounterCharm",
-                    "Untransfiguration", "BindingMagicalContract", "Vanishment"
+                    "--", "Charm", "Conjuration", "Spell", "Transfiguration", "Healing Spell",
+                    "Dark Charm", "Jinx", "Curse", "Magical Transportation", "Hex",
+                    "Counter Spell", "Dark Arts", "Counter Jinx", "Counter Charm",
+                    "Untransfiguration", "Binding Magical Contract", "Vanishment"
             };
     private JComboBox<String> category;
     private JLabel categorySelected;
@@ -46,7 +46,7 @@ public class NewtsPracticeExam extends JFrame
     private void setForm()
     {
         setTitle("Nemesure's Exhausting Wizarding Tests Practice Examination");
-        setSize(800, 600);
+        setSize(800, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout());
     }

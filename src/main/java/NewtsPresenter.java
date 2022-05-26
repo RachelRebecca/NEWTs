@@ -50,7 +50,13 @@ public class NewtsPresenter
         } else
         {
             view.setCategorySelected("");
-            getNewQuestion(category);
+            StringBuilder newCategory = new StringBuilder();
+            String[] splitCategory = category.split(" ");
+            for (String cat : splitCategory)
+            {
+                newCategory.append(cat);
+            }
+            getNewQuestion(newCategory.toString());
         }
     }
 
