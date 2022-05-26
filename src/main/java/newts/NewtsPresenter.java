@@ -1,15 +1,20 @@
+package newts;
+
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import json.Spell;
-import json.SpellList;
-import json.WizardWorldService;
+import newts.json.Spell;
+import newts.json.SpellList;
+import newts.json.WizardWorldService;
 
-import java.awt.*;
+import javax.inject.Inject;
+import javax.inject.Provider;
+import javax.inject.Singleton;
 import java.util.Random;
 
+@Singleton
 public class NewtsPresenter
 {
-    private NewtsPracticeExam view;
+    private final Provider<NewtsPracticeExam> viewProvider;
     private WizardWorldService model;
     private Disposable disposable;
     private Random rand;
@@ -22,9 +27,10 @@ public class NewtsPresenter
     int totalCorrect = 0;
     private boolean practiceTestOver = false;
 
-    public NewtsPresenter(NewtsPracticeExam view, WizardWorldService model)
+    @Inject
+    public NewtsPresenter(Provider<NewtsPracticeExam> view, WizardWorldService model)
     {
-        this.view = view;
+        this.viewProvider = view;
         this.model = model;
 
         this.rand = new Random();
@@ -34,10 +40,10 @@ public class NewtsPresenter
     {
         if (category.equals("--"))
         {
-            view.resetToDefaults();
+            viewProvider.get().resetToDefaults();
             if (!practiceTestOver)
             {
-                view.setCategorySelected("No Category Selected.");
+                viewProvider.get().setCategorySelected("No Category Selected.");
             }
         }
     }
@@ -49,7 +55,7 @@ public class NewtsPresenter
             resetFlashCard(category);
         } else
         {
-            view.setCategorySelected("");
+            viewProvider.get().setCategorySelected("");
             getNewQuestion(category);
         }
     }
@@ -72,9 +78,9 @@ public class NewtsPresenter
 
         currSpell = spell;
 
-        view.setEffect("<html>" + currSpell.getEffect() + "</html>");
+        viewProvider.get().setEffect("<html>" + currSpell.getEffect() + "</html>");
 
-        view.setSpellColor(currSpell.getLight());
+        viewProvider.get().setSpellColor(currSpell.getLight());
     }
 
     private int getRandomSpellIndex(SpellList spells)
@@ -84,14 +90,14 @@ public class NewtsPresenter
 
     private void onError(Throwable throwable)
     {
-        view.setEffect((throwable.getMessage() == null)
+        viewProvider.get().setEffect((throwable.getMessage() == null)
                 ? "Something went wrong" : throwable.getMessage());
         throwable.printStackTrace();
     }
 
     public void onSubmitAnswer(String text)
     {
-        if (view.getCategory().equals("--"))
+        if (viewProvider.get().getCategory().equals("--"))
         {
             spellSelected = false;
         }
@@ -103,7 +109,7 @@ public class NewtsPresenter
     {
         if (spellSelected)
         {
-            view.resetIncantation();
+            viewProvider.get().resetIncantation();
             totalAsked++;
 
             String value = (currSpell.getIncantation() == null)
@@ -112,14 +118,14 @@ public class NewtsPresenter
             if (text.equalsIgnoreCase(value))
             {
                 totalCorrect++;
-                view.setResult("Correct!");
+                viewProvider.get().setResult("Correct!");
             } else
             {
-                view.setResult("Incorrect, the correct answer was " + value);
+                viewProvider.get().setResult("Incorrect, the correct answer was " + value);
             }
         } else
         {
-            view.setResult("You must select a category first.");
+            viewProvider.get().setResult("You must select a category first.");
         }
     }
 
@@ -129,11 +135,11 @@ public class NewtsPresenter
         if (totalAsked == outOf)
         {
             double percent = ((totalCorrect + 0.0 / totalAsked) * outOf);
-            view.showResultsMessage("You scored " + totalCorrect + " / "
+            viewProvider.get().showResultsMessage("You scored " + totalCorrect + " / "
                     + totalAsked + ": " + percent + "%");
 
             practiceTestOver = true;
-            view.setCategorySelectedIndex(0);
+            viewProvider.get().setCategorySelectedIndex(0);
             resetFlashCard("--");
             resetDefaults();
         }

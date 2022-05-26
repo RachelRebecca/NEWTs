@@ -1,3 +1,5 @@
+package newts;
+
 import javax.swing.*;
 import java.awt.*;
 

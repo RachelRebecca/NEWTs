@@ -1,7 +1,9 @@
-import json.Spell;
-import json.SpellList;
-import json.WizardWorldService;
-import json.WizardWorldServiceFactory;
+package newts;
+
+import newts.json.Spell;
+import newts.json.SpellList;
+import newts.json.WizardWorldService;
+import newts.json.WizardWorldServiceFactory;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

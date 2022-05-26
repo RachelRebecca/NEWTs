@@ -1,11 +1,17 @@
+package newts;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.Objects;
 
-import json.WizardWorldServiceFactory;
+import newts.dagger.DaggerWizardWorldComponent;
+import newts.json.WizardWorldServiceFactory;
 
+@Singleton
 public class NewtsPracticeExam extends JFrame
 {
     private JPanel verticalPanel;
@@ -31,13 +37,16 @@ public class NewtsPracticeExam extends JFrame
 
     private NewtsPresenter presenter;
 
-    public NewtsPracticeExam()
+    @Inject
+    public NewtsPracticeExam(NewtsPresenter presenter)
     {
         setForm();
 
         setVerticalPanel();
 
         setInitialValues();
+
+        this.presenter = presenter;
     }
 
     /**
@@ -60,11 +69,6 @@ public class NewtsPracticeExam extends JFrame
 
     private void setInitialValues()
     {
-        // presenter = new NEWTsPresenter(this, new SpellGenerator());
-
-        WizardWorldServiceFactory factory = new WizardWorldServiceFactory();
-        presenter = new NewtsPresenter(this, factory.getInstance());
-
         addChooseCategoryPanel();
 
         addFlashCardPanel();
@@ -230,8 +234,8 @@ public class NewtsPracticeExam extends JFrame
 
     public static void main(String[] args)
     {
-        JFrame frame = new NewtsPracticeExam();
-
+        JFrame frame = DaggerWizardWorldComponent.create()
+                .getNewtsPracticeExam();
         frame.setVisible(true);
     }
 }

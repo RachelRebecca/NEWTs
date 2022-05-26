@@ -1,11 +1,15 @@
+package newts;
+
 import io.reactivex.Single;
 import io.reactivex.plugins.RxJavaPlugins;
 import io.reactivex.schedulers.Schedulers;
-import json.Spell;
-import json.SpellList;
-import json.WizardWorldService;
+import newts.json.Spell;
+import newts.json.SpellList;
+import newts.json.WizardWorldService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import javax.inject.Provider;
 
 import static org.mockito.Mockito.*;
 
@@ -27,8 +31,9 @@ class NewtsPresenterTest
     {
         //given
         NewtsPracticeExam view = mock(NewtsPracticeExam.class);
+        Provider<NewtsPracticeExam> viewProvider = () -> view;
         WizardWorldService model = mock(WizardWorldService.class);
-        NewtsPresenter presenter = new NewtsPresenter(view, model);
+        NewtsPresenter presenter = new NewtsPresenter(viewProvider, model);
 
         setUpAguamentiSpell(model);
 
@@ -45,8 +50,9 @@ class NewtsPresenterTest
     {
         //given
         NewtsPracticeExam view = mock(NewtsPracticeExam.class);
+        Provider<NewtsPracticeExam> viewProvider = () -> view;
         WizardWorldService model = mock(WizardWorldService.class);
-        NewtsPresenter presenter = new NewtsPresenter(view, model);
+        NewtsPresenter presenter = new NewtsPresenter(viewProvider, model);
 
         // when
         presenter.loadSpellInformation("--");
@@ -61,8 +67,9 @@ class NewtsPresenterTest
     {
         //given
         NewtsPracticeExam view = mock(NewtsPracticeExam.class);
+        Provider<NewtsPracticeExam> viewProvider = () -> view;
         WizardWorldService model = mock(WizardWorldService.class);
-        NewtsPresenter presenter = new NewtsPresenter(view, model);
+        NewtsPresenter presenter = new NewtsPresenter(viewProvider, model);
 
         doReturn("Conjuration").when(view).getCategory();
 
@@ -81,8 +88,9 @@ class NewtsPresenterTest
     {
         //given
         NewtsPracticeExam view = mock(NewtsPracticeExam.class);
+        Provider<NewtsPracticeExam> viewProvider = () -> view;
         WizardWorldService model = mock(WizardWorldService.class);
-        NewtsPresenter presenter = new NewtsPresenter(view, model);
+        NewtsPresenter presenter = new NewtsPresenter(viewProvider, model);
 
         doReturn("Conjuration").when(view).getCategory();
 
@@ -110,8 +118,9 @@ class NewtsPresenterTest
     {
         //given
         NewtsPracticeExam view = mock(NewtsPracticeExam.class);
+        Provider<NewtsPracticeExam> viewProvider = () -> view;
         WizardWorldService model = mock(WizardWorldService.class);
-        NewtsPresenter presenter = new NewtsPresenter(view, model);
+        NewtsPresenter presenter = new NewtsPresenter(viewProvider, model);
 
         doReturn("Conjuration").when(view).getCategory();
 
@@ -137,8 +146,9 @@ class NewtsPresenterTest
     {
         //given
         NewtsPracticeExam view = mock(NewtsPracticeExam.class);
+        Provider<NewtsPracticeExam> viewProvider = () -> view;
         WizardWorldService model = mock(WizardWorldService.class);
-        NewtsPresenter presenter = new NewtsPresenter(view, model);
+        NewtsPresenter presenter = new NewtsPresenter(viewProvider, model);
 
         doReturn("Conjuration").when(view).getCategory();
 
@@ -162,8 +172,9 @@ class NewtsPresenterTest
     {
         //given
         NewtsPracticeExam view = mock(NewtsPracticeExam.class);
+        Provider<NewtsPracticeExam> viewProvider = () -> view;
         WizardWorldService model = mock(WizardWorldService.class);
-        NewtsPresenter presenter = new NewtsPresenter(view, model);
+        NewtsPresenter presenter = new NewtsPresenter(viewProvider, model);
 
         doReturn("Conjuration").when(view).getCategory();
 

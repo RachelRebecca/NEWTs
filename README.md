@@ -15,6 +15,7 @@ This project uses:
 - [Junit](https://junit.org/junit5/)
 - [Rx](https://github.com/ReactiveX/RxJava)
 - [Gradle](https://gradle.org/)
+- [Dagger](https://www.baeldung.com/dagger-2)
 
 ![NEWTs](screenshots/NEWTsScreenshot.png)
 
