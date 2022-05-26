@@ -56,7 +56,8 @@ public class NewtsPresenter
         } else
         {
             viewProvider.get().setCategorySelected("");
-            getNewQuestion(category);
+            String newCategory = category.replaceAll(" ", "");
+            getNewQuestion(newCategory);
         }
     }
 
