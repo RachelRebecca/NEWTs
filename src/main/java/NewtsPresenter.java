@@ -4,7 +4,6 @@ import json.Spell;
 import json.SpellList;
 import json.WizardWorldService;
 
-import java.awt.*;
 import java.util.Random;
 
 public class NewtsPresenter
@@ -50,13 +49,8 @@ public class NewtsPresenter
         } else
         {
             view.setCategorySelected("");
-            StringBuilder newCategory = new StringBuilder();
-            String[] splitCategory = category.split(" ");
-            for (String cat : splitCategory)
-            {
-                newCategory.append(cat);
-            }
-            getNewQuestion(newCategory.toString());
+            String newCategory = category.replaceAll(" ", "");
+            getNewQuestion(newCategory);
         }
     }
 
