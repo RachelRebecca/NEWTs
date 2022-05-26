@@ -1,4 +1,4 @@
-package json;
+package newts.json;
 
 public class Spell
 {

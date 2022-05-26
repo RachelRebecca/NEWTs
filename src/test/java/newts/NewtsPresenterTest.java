@@ -1,9 +1,14 @@
+package newts;
+
 import io.reactivex.Single;
 import io.reactivex.plugins.RxJavaPlugins;
 import io.reactivex.schedulers.Schedulers;
-import json.Spell;
-import json.SpellList;
-import json.WizardWorldService;
+import newts.json.Spell;
+import newts.json.SpellList;
+import newts.json.WizardWorldService;
+import newts.NewtsPracticeExam;
+import newts.NewtsPresenter;
+import newts.SpellLightColors;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

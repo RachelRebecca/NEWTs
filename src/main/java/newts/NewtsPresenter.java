@@ -1,8 +1,10 @@
+package newts;
+
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import json.Spell;
-import json.SpellList;
-import json.WizardWorldService;
+import newts.json.Spell;
+import newts.json.SpellList;
+import newts.json.WizardWorldService;
 
 import java.util.Random;
 
