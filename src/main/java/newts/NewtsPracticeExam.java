@@ -2,6 +2,7 @@ package newts;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import newts.dagger.DaggerWizardWorldComponent;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -9,7 +10,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.Objects;
 
-import newts.dagger.DaggerWizardWorldComponent;
 
 @Singleton
 public class NewtsPracticeExam extends JFrame

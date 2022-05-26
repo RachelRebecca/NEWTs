@@ -144,8 +144,7 @@ public class NewtsPresenter
             viewProvider.get().setCategorySelectedIndex(0);
             resetFlashCard("--");
             resetDefaults();
-        }
-        else if (spellSelected)
+        } else if (spellSelected)
         {
             try
             {

@@ -34,7 +34,7 @@ class NewtsPresenterTest
         Provider<NewtsPracticeExam> viewProvider = () -> view;
         WizardWorldService model = mock(WizardWorldService.class);
         NewtsPresenter presenter = new NewtsPresenter(viewProvider, model);
-      
+
         setUpAguamentiSpell(model);
 
         // when
