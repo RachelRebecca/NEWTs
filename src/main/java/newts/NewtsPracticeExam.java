@@ -2,6 +2,7 @@ package newts;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
@@ -43,9 +44,10 @@ public class NewtsPracticeExam extends JFrame
 
         setVerticalPanel();
 
+        this.presenter = presenter;
+
         setInitialValues();
 
-        this.presenter = presenter;
     }
 
     /**

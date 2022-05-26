@@ -15,6 +15,7 @@ import java.util.Random;
 public class NewtsPresenter
 {
     private final Provider<NewtsPracticeExam> viewProvider;
+
     private WizardWorldService model;
     private Disposable disposable;
     private Random rand;
