@@ -6,8 +6,7 @@ import java.awt.*;
 public class SpellColor extends JComponent
 {
     private String spellColorName = "none";
-    private Color spellColor;
-    private SpellLightColors spellLightColors;
+    private final SpellLightColors spellLightColors;
 
     public SpellColor()
     {
@@ -26,7 +25,7 @@ public class SpellColor extends JComponent
         Graphics2D graphics2D = (Graphics2D) graphics;
         super.paintComponent(graphics2D);
 
-        spellColor = spellLightColors.lightToColor.get(spellColorName);
+        Color spellColor = spellLightColors.lightToColor.get(spellColorName);
         if (spellColor != null)
         {
             graphics.setColor(spellColor);
